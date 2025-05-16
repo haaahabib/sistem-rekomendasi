@@ -4,17 +4,14 @@
 
 Sistem rekomendasi buku menjadi kunci penting untuk meningkatkan pengalaman pengguna (experience) di platform literasi digital. Pembaca sering kali kesulitan menemukan buku baru yang sesuai preferensi karena banyaknya pilihan [[1]](https://jurnal.itbsemarang.ac.id/index.php/JPTIS/article/view/818), [[2]](https://jurnal.uns.ac.id/joive/article/view/53618), [[3]](https://jurnal.polgan.ac.id/index.php/remik/article/view/14515). Proyek ini bertujuan untuk membangun sistem rekomendasi berbasis konten dan popularitas untuk memecahkan masalah tersebut. Dataset yang digunakan mencakup 10.000 buku dari Goodreads, dengan referensi utama dari daftar "Books That Everyone Should Read At Least Once" [[4]](https://www.kaggle.com/datasets/ishikajohari/best-books-10k-multi-genre-data?select=goodreads_data.csv).
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Jelaskan mengapa dan bagaimana masalah tersebut harus diselesaikan
-- Menyertakan hasil riset terkait atau referensi. Referensi yang diberikan harus berasal dari sumber yang kredibel dan author yang jelas.
-- Format Referensi dapat mengacu pada penulisan sitasi [IEEE](https://journals.ieeeauthorcenter.ieee.org/wp-content/uploads/sites/7/IEEE_Reference_Guide.pdf), [APA](https://www.mendeley.com/guides/apa-citation-guide/) atau secara umum seperti [di sini](https://penerbitdeepublish.com/menulis-buku-membuat-sitasi-dengan-mudah/)
-- Sumber yang bisa digunakan [Scholar](https://scholar.google.com/)
+## Referensi
+
+1. F. Ertandi and M. Akbar, "Sistem Pendukung Keputusan Rekomendasi Buku Novel menggunakan Metode Weighted Product," Renik: Riset dan E-Jurnal Manajemen Informatika Komputer, vol. 9, no. 1, pp. 366–381, Jan. 2025. doi: 10.33395/renik.v9i1.14515.
+2. E. G. E. Devara et al., "Pengembangan Teknologi Rekomendasi Kecerdasan Buatan yang Digunakan pada Perpustakaan," Journal of Informatics and Vocational Education (JOIVE), vol. 4, no. 3, pp. 87–92, Oct. 2021. doi: 10.20961/joive.v4i3.53618.
+3. K. Harahap et al., "Aplikasi Baca Buku Platform Digital Yang Dirancang Untuk Memfasilitasi Pengguna Dalam Membaca Berbagai Jenis Buku Elektronik," Jurnal Penelitian Teknologi Informasi Dan Sains, vol. 1, no. 3, pp. 94–102, Sep. 2023. doi: 10.54066/jptis.v1i3.818.
+4. Dataset: Best Books (10k) Multi-Genre Data, [Kaggle](https://www.kaggle.com/datasets/ishikajohari/best-books-10k-multi-genre-data?select=goodreads_data.csv)
 
 ## Business Understanding
-
-Pada bagian ini, Anda perlu menjelaskan proses klarifikasi masalah.
-
-Bagian laporan ini mencakup:
 
 ### Problem Statements
 
