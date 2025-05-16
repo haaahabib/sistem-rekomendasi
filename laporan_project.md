@@ -1,5 +1,7 @@
 # Laporan Proyek Machine Learning - Muhammad Habibulloh
 
+![download](https://github.com/user-attachments/assets/c4d9e51a-5cd4-47e3-a5ef-d18eee6cedf3)
+
 ## Project Overview
 
 Sistem rekomendasi buku menjadi kunci penting untuk meningkatkan pengalaman pengguna (experience) di platform literasi digital. Pembaca sering kali kesulitan menemukan buku baru yang sesuai preferensi karena banyaknya pilihan [[1]](https://jurnal.itbsemarang.ac.id/index.php/JPTIS/article/view/818), [[2]](https://jurnal.uns.ac.id/joive/article/view/53618), [[3]](https://jurnal.polgan.ac.id/index.php/remik/article/view/14515). Proyek ini bertujuan untuk membangun sistem rekomendasi berbasis konten dan popularitas untuk memecahkan masalah tersebut. Dataset yang digunakan mencakup 10.000 buku dari Goodreads, dengan referensi utama dari daftar "Books That Everyone Should Read At Least Once" [[4]](https://www.kaggle.com/datasets/ishikajohari/best-books-10k-multi-genre-data?select=goodreads_data.csv).
@@ -15,63 +17,90 @@ Sistem rekomendasi buku menjadi kunci penting untuk meningkatkan pengalaman peng
 
 ### Problem Statements
 
-Menjelaskan pernyataan masalah:
-- Pernyataan Masalah 1
-- Pernyataan Masalah 2
-- Pernyataan Masalah n
+- Pengguna/pembaca kesulitan menemukan buku sesuai preferensi genre
+- Platform membutuhkan rekomendasi buku populer untuk meningkatkan engagement
 
 ### Goals
 
-Menjelaskan tujuan proyek yang menjawab pernyataan masalah:
-- Jawaban pernyataan masalah 1
-- Jawaban pernyataan masalah 2
-- Jawaban pernyataan masalah n
+- Membangun sistem rekomendasi berbasis genre dan deskripsi buku (content-based filtering)
+- Menyediakan daftar buku populer berdasarkan rating dan jumlah ulasan (popularity-based filtering)
 
-Semua poin di atas harus diuraikan dengan jelas. Anda bebas menuliskan berapa pernyataan masalah dan juga goals yang diinginkan.
+## Solution statements
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Menambahkan bagian “Solution Approach” yang menguraikan cara untuk meraih goals. Bagian ini dibuat dengan ketentuan sebagai berikut: 
-
-    ### Solution statements
-    - Mengajukan 2 atau lebih solution approach (algoritma atau pendekatan sistem rekomendasi).
+- Content-Based Filtering, menggunakan TF-IDF dan cosine similarity untuk merekomendasikan buku dengan konten serupa.
+- Popularity-Based Filtering, merekomendasikan buku dengan skor popularitas tertinggi (Num_Ratings x Avg_Rating).
 
 ## Data Understanding
-Paragraf awal bagian ini menjelaskan informasi mengenai jumlah data, kondisi data, dan informasi mengenai data yang digunakan. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
 
-Selanjutnya, uraikanlah seluruh variabel atau fitur pada data. Sebagai contoh:  
+### Sumber Dataset
 
-Variabel-variabel pada Restaurant UCI dataset adalah sebagai berikut:
-- accepts : merupakan jenis pembayaran yang diterima pada restoran tertentu.
-- cuisine : merupakan jenis masakan yang disajikan pada restoran.
-- dst
+Dataset diambil dari Kaggle
+[Best Books (10k) Multi-Genre Data](https://www.kaggle.com/datasets/ishikajohari/best-books-10k-multi-genre-data?select=goodreads_data.csv), Dataset memiliki 10.000 baris dan 8 kolom, dengan variabel sebagai berikut:
+- unnamed column (hanya no. urutan)
+- Book: Judul buku
+- Author: Penulis
+- Genres: Daftar genre (multi-label)
+- Description: Deskripsi buku
+- Avg_Rating: Rata-rata rating (0-5)
+- Num_Ratings: Jumlah ulasan
+- URL: Goodreads URL
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Melakukan beberapa tahapan yang diperlukan untuk memahami data, contohnya teknik visualisasi data beserta insight atau exploratory data analysis.
+### Eksplorasi Data 
+
+- Jumlah Data total yaitu 10.000 buku.
+- Missing Values: Terdapat 77 data hilang pada kolom Description, yang diatasi dengan penghapusan baris
+- Distribusi Genre yang sangat beragam, namun ini adalah top 15 atau 15 genre terbanyak dari dataset yang bisa ditampilkan
+  ![image](https://github.com/user-attachments/assets/c6038cb5-1546-479e-a4f7-21aba10170da)
 
 ## Data Preparation
-Pada bagian ini Anda menerapkan dan menyebutkan teknik data preparation yang dilakukan. Teknik yang digunakan pada notebook dan laporan harus berurutan.
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan proses data preparation yang dilakukan
-- Menjelaskan alasan mengapa diperlukan tahapan data preparation tersebut.
+1. Data Cleaning
+- Menghapus baris dengan nilai kosong di kolom 'Description' dan 'Genres'
+- Memformat kolom 'Genres' dengan menghapus karakter yang tidak diinginkan
+  
+2. Menggabungkan Fitur Teks
+- Menggabungkan kolom 'Genres' dan 'Description' menjadi satu kolom 'content' untuk digunakan dalam model berbasis konten
+
+Tujuan dari tahapan ini adalah untuk memastikan data bersih, konsisten, dan dalam format yang sesuai untuk analisis dan pemodelan, yang penting untuk akurasi sistem rekomendasi. 
 
 ## Modeling
-Tahapan ini membahas mengenai model sisten rekomendasi yang Anda buat untuk menyelesaikan permasalahan. Sajikan top-N recommendation sebagai output.
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menyajikan dua solusi rekomendasi dengan algoritma yang berbeda.
-- Menjelaskan kelebihan dan kekurangan dari solusi/pendekatan yang dipilih.
+1. Content-Based Filtering Model
+- Implementasi
+  Model ini merekomendasikan buku berdasarkan kesamaan konten (genre dan deskripsi)
+    a. Menggunakan TF-IDF Vectorizer untuk mengubah teks (genre dan deskripsi) menjadi matriks TF-IDF
+    b. Menghitung Cosine Similarity antara matriks TF-IDF untuk mengetahui tingkat kemiripan antar buku
+    c. Fungsi get_content_recommendations mengambil judul buku dan mengembalikan daftar rekomendasi buku serupa berdasarkan skor kesamaan
+- Kelebihan: mampu merekomendasikan item yang disukai pengguna/pembaca bahkan jika item tersebut jarang atau baru dan juga rekomendasi relevan dengan preferensi pengguna/pembaca terhadap konten.
+- Kekurangan: cenderung merekomendasikan item yang sangat mirip atau yang sudah dibaca maupun diketahui pengguna/pembaca
+
+2. Popularity-Based Recommendation
+- Implementasi
+  Model ini merekomendasikan buku yang paling populer di antara semua buku, dengan
+    a. Popularitas dihitung berdasarkan kombinasi Num_Ratings dan Avg_Rating (popularity_score)
+    b. Fungsi get_popular_books mengembalikan daftar buku teratas berdasarkan skor popularitas tertinggi
+- Kelebihan: mudah diimplementasikan dan memberikan rekomendasi yang relevan untuk pengguna baru dan cocok untuk menyoroti item yang sedang tren atau disukai banyak orang
+- Kekurangan: tidak mempertimbangkan preferensi individu pengguna/pembaca, berdasarakan popularity score.
 
 ## Evaluation
-Pada bagian ini Anda perlu menyebutkan metrik evaluasi yang digunakan. Kemudian, jelaskan hasil proyek berdasarkan metrik evaluasi tersebut.
 
-Ingatlah, metrik evaluasi yang digunakan harus sesuai dengan konteks data, problem statement, dan solusi yang diinginkan.
+1. Content-Based Filtering
+- Menggunakan metrik precision@k (k=5). Precision dihitung dengan mengambil sampel buku secara acak. Untuk setiap buku sampel, model merekomendasikan buku-buku lain. Kemudian, diukur berapa persentase rekomendasi tersebut yang memiliki setidaknya satu genre yang sama dengan buku sampel. Rata-rata persentase = nilai Precision.
+- Hasilnya  Precision: 56.00%. artinya model Content-Based Filtering memiliki kemampuan di atas 50% untuk merekomendasikan buku dengan genre yang serupa atau berarti model cenderung merekomendasikan buku yang relevan secara genre
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan formula metrik dan bagaimana metrik tersebut bekerja.
+2. Popularity-Based Recommendation
+- Metrik: Bestseller Ratio in Top N (N=10)
+- Hasilnya 100% yang menunjukkan bahwa semua 10 buku teratas yang direkomendasikan adalah "bestseller" (berdasarkan kriteria Num_Ratings > 900 (asumsi 900 adalah rating top)).
 
-**---Ini adalah bagian akhir laporan---**
+## Kesimpulan
 
-_Catatan:_
-- _Anda dapat menambahkan gambar, kode, atau tabel ke dalam laporan jika diperlukan. Temukan caranya pada contoh dokumen markdown di situs editor [Dillinger](https://dillinger.io/), [Github Guides: Mastering markdown](https://guides.github.com/features/mastering-markdown/), atau sumber lain di internet. Semangat!_
-- Jika terdapat penjelasan yang harus menyertakan code snippet, tuliskan dengan sewajarnya. Tidak perlu menuliskan keseluruhan kode project, cukup bagian yang ingin dijelaskan saja.
+Proyek ini membangun dua model rekomendasi buku:
+
+1. Content-Based Filtering:
+   Merekomendasikan buku berdasarkan kesamaan konten (genre, deskripsi). Evaluasi menunjukkan Precision@5 sebesar 56.00%, efektif untuk merekomendasikan buku dengan konten serupa.
+2. Popularity-Based Recommendation
+   Merekomendasikan buku terpopuler. Evaluasi menunjukkan Bestseller Ratio dalam Top 10 sebesar 100%, berhasil mengidentifikasi buku bestseller.
+   
+Kedua model ini memberikan cara untuk merekomendasikan buku berdasarkan preferensi konten atau popularitas
+
+**---Terima Kasih---**
