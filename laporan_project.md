@@ -128,6 +128,7 @@ Tujuan dari tahapan ini adalah memastikan data bersih, konsisten, dan siap untuk
     
     
 3. Penjelasan Model
+   
   a. Content-Based Filtering:
     - Setiap buku direpresentasikan sebagai vektor TF-IDF dari konten (genre + deskripsi).
     - Cosine similarity menghitung kemiripan antara vektor buku target dan buku lainnya.
