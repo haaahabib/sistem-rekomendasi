@@ -54,9 +54,12 @@ Dataset diambil dari Kaggle
 
 ## Data Preparation
 
+Berikut tahapan dalam data preparation yang dilakukan:
+
 1. Data Cleaning
-- Menghapus baris dengan nilai kosong di kolom 'Description' dan 'Genres'
+- Menghapus baris dengan nilai kosong pada kolom ```Description``` dan ```Genres``` menggunakan ```df.dropna()```
 - Memformat kolom 'Genres' dengan menghapus karakter yang tidak diinginkan
+- 
   
 2. Menggabungkan Fitur Teks
 - Menggabungkan kolom 'Genres' dan 'Description' menjadi satu kolom 'content' untuk digunakan dalam model berbasis konten
