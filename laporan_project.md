@@ -72,8 +72,8 @@ Berikut tahapan dalam data preparation yang dilakukan:
 
 3. Ekstraksi Fitur dengan TF-IDF
 - Tujuannya mengubah teks dalam kolom ```content``` menjadi representasi numerik agar bisa diproses oleh model
-- Menggunakan TfidfVectorizer dengan parameter berikut:
-  - stop_words='english' (menghapus kata umum seperti "the", "and")
+- Menggunakan TF-IDF Vectorizer dengan parameter berikut:
+  - stop_words='english' (menghapus kata umum inggris seperti "the", "and")
   - ngram_range=(1,2) (mempertimbangkan kata tunggal dan pasangan kata)
     ```
     from sklearn.feature_extraction.text import TfidfVectorizer  
@@ -93,13 +93,14 @@ Tujuan dari tahapan ini adalah memastikan data bersih, konsisten, dan siap untuk
   - Cosine Similarity digunakan untuk menghitung kemiripan antar buku berdasarkan vektor TF-IDF.
   - Buku dengan skor kesamaan (similiarity) tertinggi direkomendasikan.
   - Contoh Hasil Rekomendasi (Top 5 untuk The Help):
-    | Book                                      | Author          | Genres                                                                |
-|-------------------------------------------|-----------------|-----------------------------------------------------------------------|
-| Kerri's War (The King Trilogy, #3)        | Stephen Douglass| Thriller, Romance, Crime, Amazon                                      |
-| The Joy Luck Club                         | Amy Tan         | Fiction, Historical Fiction, Classics, China, Contemporary, Adult    |
-| Lean In: Women, Work, and the Will to Lead| Sheryl Sandberg | Nonfiction, Business, Feminism, Self Help, Leadership, Audiobook     |
-| World Without End (Kingsbridge, #2)       | Ken Follett     | Historical Fiction, Fiction, Historical, Medieval, Audiobook, Fantasy|
-| Penis Politics: A Memoir of Women, Men and Power | Karen Hinton | Nonfiction                                                            |
+    | Book                                             | Author           | Genres                                                                                    |
+|--------------------------------------------------|------------------|-------------------------------------------------------------------------------------------|
+| Kerri's War (The King Trilogy, #3)               | Stephen Douglass | Thriller, Romance, Crime, Amazon                                                          |
+| The Joy Luck Club                                | Amy Tan          | Fiction, Historical Fiction, Classics, China, Contemporary, Adult Fiction, Adult          |
+| Lean In: Women, Work, and the Will to Lead       | Sheryl Sandberg  | Nonfiction, Business, Feminism, Self Help, Leadership, Audiobook, Womens                  |
+| World Without End (Kingsbridge, #2)              | Ken Follett      | Historical Fiction, Fiction, Historical, Medieval, Audiobook, British Literature, Fantasy |
+| Penis Politics: A Memoir of Women, Men and Power | Karen  Hinton    | Nonfiction                                                                                |
+
 
 2. Popularity-Based Recommendation
    Sistem rekomendasi yang menampilkan buku berdasarkan popularitas
@@ -108,7 +109,8 @@ Tujuan dari tahapan ini adalah memastikan data bersih, konsisten, dan siap untuk
 
   - Popularity Score dihitung dengan ```Num_Ratings``` x ```Avg_Rating```.
   - Buku dengan skor tertinggi ditampilkan sebagai rekomendasi.
-  - Contoh Hasil Rekomendasi (Top 10 Buku Populer)
+  - Contoh Hasil Rekomendasi (Top 10 Buku Populer):
+    
     
 3. Penjelasan Model
   a. Content-Based Filtering:
