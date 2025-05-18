@@ -102,8 +102,6 @@ Tujuan dari tahapan ini adalah memastikan data bersih, konsisten, dan siap untuk
  World Without End (Kingsbridge, #2)              | Ken Follett      | Historical Fiction, Fiction, Historical, Medieval, Audiobook, British Literature, Fantasy 
  Penis Politics: A Memoir of Women, Men and Power | Karen  Hinton    | Nonfiction                                                                                
 
-
-
 2. Popularity-Based Recommendation
    Sistem rekomendasi yang menampilkan buku berdasarkan popularitas
 
@@ -112,6 +110,19 @@ Tujuan dari tahapan ini adalah memastikan data bersih, konsisten, dan siap untuk
   - Popularity Score dihitung dengan ```Num_Ratings``` x ```Avg_Rating```.
   - Buku dengan skor tertinggi ditampilkan sebagai rekomendasi.
   - Contoh Hasil Rekomendasi (Top 10 Buku Populer):
+
+ Book                                                                                            | Author             | Avg_Rating | Num_Ratings 
+-------------------------------------------------------------------------------------------------|--------------------|------------|-------------
+ The Raj Quartet                                                                                 | Paul Scott         | 4.48       | 995.0       
+ Living The Best Day Ever                                                                        | Hendri Coetzee     | 4.34       | 997.0       
+ Hometown Girl After All (Hometown, #2)                                                          | Kirsten Fullmer    | 4.32       | 999.0       
+ Hometown Girl After All (Hometown, #2)                                                          | Kirsten Fullmer    | 4.32       | 999.0       
+ Glucose Control Eating: Lose Weight Stay Slimmer Live Healthier Live Longer                     | Rick Mystrom       | 4.31       | 984.0       
+ The Chain Between Worlds (The Lost Artefacts #1)                                                | Johnathon Nicolaou | 4.62       | 915.0       
+ Ryan White: My Own Story                                                                        | Ryan White         | 4.27       | 971.0       
+ Christmas in Smithville (Hometown, #4)                                                          | Kirsten Fullmer    | 4.3        | 964.0       
+ Proud Pada (The Last Lumenian, #3)                                                              | S.G. Blaise        | 4.33       | 950.0       
+ The Search for Mother Missing: A Peek Inside International Adoption (Adoption Books for Adults) | Janine Vance       | 4.46       | 921.0       
     
     
 3. Penjelasan Model
