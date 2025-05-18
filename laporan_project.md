@@ -27,8 +27,8 @@ Sistem rekomendasi buku menjadi kunci penting untuk meningkatkan pengalaman peng
 
 ## Solution statements
 
-- Content-Based Filtering, menggunakan TF-IDF dan cosine similarity untuk merekomendasikan buku dengan konten serupa.
-- Popularity-Based Filtering, merekomendasikan buku dengan skor popularitas tertinggi (Num_Ratings x Avg_Rating).
+- Content-Based Filtering, menggunakan TF-IDF dan cosine similarity untuk merekomendasikan buku dengan konten serupa
+- Popularity-Based Filtering, merekomendasikan buku dengan skor popularitas tertinggi (```Num_Ratings``` x ```Avg_Rating```)
 
 ## Data Understanding
 
@@ -37,13 +37,13 @@ Sistem rekomendasi buku menjadi kunci penting untuk meningkatkan pengalaman peng
 Dataset diambil dari Kaggle
 [Best Books (10k) Multi-Genre Data](https://www.kaggle.com/datasets/ishikajohari/best-books-10k-multi-genre-data?select=goodreads_data.csv), Dataset memiliki 10.000 baris dan 8 kolom, dengan variabel sebagai berikut:
 - unnamed column (hanya no. urutan)
-- Book: Judul buku
-- Author: Penulis
-- Genres: Daftar genre (multi-label)
-- Description: Deskripsi buku
-- Avg_Rating: Rata-rata rating (0-5)
-- Num_Ratings: Jumlah ulasan
-- URL: Goodreads URL
+- ```Book```: Judul buku
+- ```Author```: Penulis
+- ```Genres```: Daftar genre (multi-label)
+- ```Description```: Deskripsi buku
+- ```Avg_Rating```: Rata-rata rating (0-5)
+- ```Num_Ratings```: Jumlah ulasan
+- ```URL```: Goodreads URL
 
 ### Eksplorasi Data 
 
