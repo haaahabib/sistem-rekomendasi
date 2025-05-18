@@ -58,35 +58,69 @@ Berikut tahapan dalam data preparation yang dilakukan:
 
 1. Data Cleaning
 - Menghapus baris dengan nilai kosong pada kolom ```Description``` dan ```Genres``` menggunakan ```df.dropna()```
-- Memformat kolom ```Genres``` dengan menghapus karakter khusus (misal koma (,)) menggunakan regex.
+- Memformat kolom ```Genres``` dengan menghapus karakter khusus (misal koma (,)) menggunakan regex
   ```
   df_clean = df.dropna(subset=['Description', 'Genres']).copy()  
   df_clean['Genres'] = df_clean['Genres'].str.replace(r'[\[\]\']', '', regex=True)
   ```
   
-2. Menggabungkan Fitur Teks
-- Menggabungkan kolom 'Genres' dan 'Description' menjadi satu kolom 'content' untuk digunakan dalam model berbasis konten
+2. Penggabungan Fitur Teks
+- Menggabungkan kolom ```Genres``` dan ```Description``` menjadi satu kolom ```content``` untuk merepresentasikan konten buku
+  ```
+  df_clean['content'] = df_clean['Genres'] + ' ' + df_clean['Description']  
+  ```
 
-Tujuan dari tahapan ini adalah untuk memastikan data bersih, konsisten, dan dalam format yang sesuai untuk analisis dan pemodelan, yang penting untuk akurasi sistem rekomendasi. 
+3. Ekstraksi Fitur dengan TF-IDF
+- Tujuannya mengubah teks dalam kolom ```content``` menjadi representasi numerik agar bisa diproses oleh model
+- Menggunakan TfidfVectorizer dengan parameter berikut:
+  - stop_words='english' (menghapus kata umum seperti "the", "and")
+  - ngram_range=(1,2) (mempertimbangkan kata tunggal dan pasangan kata)
+    ```
+    from sklearn.feature_extraction.text import TfidfVectorizer  
+    tfidf = TfidfVectorizer(stop_words='english', ngram_range=(1,2))  
+    tfidf_matrix = tfidf.fit_transform(df_clean['content'])  
+    ```
+- Outputnya nanti adalah matriks TF-IDF yang merepresentasikan bobot kata dalam setiap dokumen
+   
+Tujuan dari tahapan ini adalah memastikan data bersih, konsisten, dan siap untuk pemodelan dan membangun representasi teks yang optimal untuk sistem rekomendasi berbasis konten.
 
 ## Modeling
 
 1. Content-Based Filtering Model
-- Implementasi
-  Model ini merekomendasikan buku berdasarkan kesamaan konten (genre dan deskripsi)
-    a. Menggunakan TF-IDF Vectorizer untuk mengubah teks (genre dan deskripsi) menjadi matriks TF-IDF
-    b. Menghitung Cosine Similarity antara matriks TF-IDF untuk mengetahui tingkat kemiripan antar buku
-    c. Fungsi get_content_recommendations mengambil judul buku dan mengembalikan daftar rekomendasi buku serupa berdasarkan skor kesamaan
-- Kelebihan: mampu merekomendasikan item yang disukai pengguna/pembaca bahkan jika item tersebut jarang atau baru dan juga rekomendasi relevan dengan preferensi pengguna/pembaca terhadap konten.
-- Kekurangan: cenderung merekomendasikan item yang sangat mirip atau yang sudah dibaca maupun diketahui pengguna/pembaca
+   Sistem rekomendasi yang menyarankan buku berdasarkan kemiripan konten (genre dan deskripsi)
+   
+   Algoritma:
+  - Cosine Similarity digunakan untuk menghitung kemiripan antar buku berdasarkan vektor TF-IDF.
+  - Buku dengan skor kesamaan (similiarity) tertinggi direkomendasikan.
+  - Contoh Hasil Rekomendasi (Top 5 untuk The Help):
+    | Book                                      | Author          | Genres                                                                |
+|-------------------------------------------|-----------------|-----------------------------------------------------------------------|
+| Kerri's War (The King Trilogy, #3)        | Stephen Douglass| Thriller, Romance, Crime, Amazon                                      |
+| The Joy Luck Club                         | Amy Tan         | Fiction, Historical Fiction, Classics, China, Contemporary, Adult    |
+| Lean In: Women, Work, and the Will to Lead| Sheryl Sandberg | Nonfiction, Business, Feminism, Self Help, Leadership, Audiobook     |
+| World Without End (Kingsbridge, #2)       | Ken Follett     | Historical Fiction, Fiction, Historical, Medieval, Audiobook, Fantasy|
+| Penis Politics: A Memoir of Women, Men and Power | Karen Hinton | Nonfiction                                                            |
 
 2. Popularity-Based Recommendation
-- Implementasi
-  Model ini merekomendasikan buku yang paling populer di antara semua buku, dengan
-    a. Popularitas dihitung berdasarkan kombinasi Num_Ratings dan Avg_Rating (popularity_score)
-    b. Fungsi get_popular_books mengembalikan daftar buku teratas berdasarkan skor popularitas tertinggi
-- Kelebihan: mudah diimplementasikan dan memberikan rekomendasi yang relevan untuk pengguna baru dan cocok untuk menyoroti item yang sedang tren atau disukai banyak orang
-- Kekurangan: tidak mempertimbangkan preferensi individu pengguna/pembaca, berdasarakan popularity score.
+   Sistem rekomendasi yang menampilkan buku berdasarkan popularitas
+
+   Algoritma:
+
+  - Popularity Score dihitung dengan ```Num_Ratings``` x ```Avg_Rating```.
+  - Buku dengan skor tertinggi ditampilkan sebagai rekomendasi.
+  - Contoh Hasil Rekomendasi (Top 10 Buku Populer)
+    
+3. Penjelasan Model
+  a. Content-Based Filtering:
+    - Setiap buku direpresentasikan sebagai vektor TF-IDF dari konten (genre + deskripsi).
+    - Cosine similarity menghitung kemiripan antara vektor buku target dan buku lainnya.
+    - Rekomendasi diambil dari 5 buku dengan skor tertinggi.
+    - Kelebihannya yaitu relevan untuk pengguna yang mencari buku dengan tema/genre spesifik.
+
+  b. Popularity-Based Recommendation:
+    - Skor popularitas menggabungkan jumlah rating (Num_Ratings) dan rata-rata rating (Avg_Rating).
+    - Buku diurutkan berdasarkan skor ini, lalu diambil peringkat teratas.
+    - Kelebihannya cocok untuk menyoroti tren/item populer
 
 ## Evaluation
 
