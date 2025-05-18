@@ -130,14 +130,14 @@ Tujuan dari tahapan ini adalah memastikan data bersih, konsisten, dan siap untuk
 3. Penjelasan Model
    
   a. Content-Based Filtering:
-    - Setiap buku direpresentasikan sebagai vektor TF-IDF dari konten (genre + deskripsi)
-    - Cosine similarity menghitung kemiripan antara vektor buku target dan buku lainnya
-    - Rekomendasi diambil dari 5 buku dengan skor tertinggi
-    - Kelebihannya yaitu relevan untuk pengguna yang mencari buku dengan tema/genre spesifik
+  - Setiap buku direpresentasikan sebagai vektor TF-IDF dari konten (genre + deskripsi)
+  - Cosine similarity menghitung kemiripan antara vektor buku target dan buku lainnya
+  - Rekomendasi diambil dari 5 buku dengan skor tertinggi
+  - Kelebihannya yaitu relevan untuk pengguna yang mencari buku dengan tema/genre spesifik
 
   b. Popularity-Based Recommendation:
-    - Skor popularitas menggabungkan jumlah rating (Num_Ratings) dan rata-rata rating (Avg_Rating), buku diurutkan berdasarkan skor ini lalu diambil peringkat teratas
-    - Kelebihannya cocok untuk menyoroti tren/item popule
+  - Skor popularitas menggabungkan jumlah rating (Num_Ratings) dan rata-rata rating (Avg_Rating), buku diurutkan berdasarkan skor ini lalu diambil peringkat teratas
+  - Kelebihannya cocok untuk menyoroti tren/item popule
 
 ## Evaluation
 
