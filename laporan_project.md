@@ -87,6 +87,7 @@ Tujuan dari tahapan ini adalah memastikan data bersih, konsisten, dan siap untuk
 ## Modeling
 
 1. Content-Based Filtering Model
+
    Sistem rekomendasi yang menyarankan buku berdasarkan kemiripan konten (genre dan deskripsi)
    
    Algoritma:
@@ -103,6 +104,7 @@ Tujuan dari tahapan ini adalah memastikan data bersih, konsisten, dan siap untuk
  Penis Politics: A Memoir of Women, Men and Power | Karen  Hinton    | Nonfiction                                                                                
 
 2. Popularity-Based Recommendation
+
    Sistem rekomendasi yang menampilkan buku berdasarkan popularitas
 
    Algoritma:
