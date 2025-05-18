@@ -93,13 +93,15 @@ Tujuan dari tahapan ini adalah memastikan data bersih, konsisten, dan siap untuk
   - Cosine Similarity digunakan untuk menghitung kemiripan antar buku berdasarkan vektor TF-IDF.
   - Buku dengan skor kesamaan (similiarity) tertinggi direkomendasikan.
   - Contoh Hasil Rekomendasi (Top 5 untuk The Help):
-    | Book                                             | Author           | Genres                                                                                    |
-|--------------------------------------------------|------------------|-------------------------------------------------------------------------------------------|
-| Kerri's War (The King Trilogy, #3)               | Stephen Douglass | Thriller, Romance, Crime, Amazon                                                          |
-| The Joy Luck Club                                | Amy Tan          | Fiction, Historical Fiction, Classics, China, Contemporary, Adult Fiction, Adult          |
-| Lean In: Women, Work, and the Will to Lead       | Sheryl Sandberg  | Nonfiction, Business, Feminism, Self Help, Leadership, Audiobook, Womens                  |
-| World Without End (Kingsbridge, #2)              | Ken Follett      | Historical Fiction, Fiction, Historical, Medieval, Audiobook, British Literature, Fantasy |
-| Penis Politics: A Memoir of Women, Men and Power | Karen  Hinton    | Nonfiction                                                                                |
+
+ Book                                             | Author           | Genres                                                                                    
+--------------------------------------------------|------------------|-------------------------------------------------------------------------------------------
+ Kerri's War (The King Trilogy, #3)               | Stephen Douglass | Thriller, Romance, Crime, Amazon                                                          
+ The Joy Luck Club                                | Amy Tan          | Fiction, Historical Fiction, Classics, China, Contemporary, Adult Fiction, Adult          
+ Lean In: Women, Work, and the Will to Lead       | Sheryl Sandberg  | Nonfiction, Business, Feminism, Self Help, Leadership, Audiobook, Womens                  
+ World Without End (Kingsbridge, #2)              | Ken Follett      | Historical Fiction, Fiction, Historical, Medieval, Audiobook, British Literature, Fantasy 
+ Penis Politics: A Memoir of Women, Men and Power | Karen  Hinton    | Nonfiction                                                                                
+
 
 
 2. Popularity-Based Recommendation
