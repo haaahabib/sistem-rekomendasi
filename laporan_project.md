@@ -151,13 +151,56 @@ Tujuan dari tahapan ini adalah memastikan data bersih, konsisten, dan siap untuk
 
 ## Kesimpulan
 
-Proyek ini membangun dua model rekomendasi buku:
+### Problem Statement
 
-1. Content-Based Filtering:
+1. Untuk problem statement 1:
+   
+  "Pengguna kesulitan menemukan buku sesuai preferensi genre"
+
+  Hasil Model yaitu:
+
+- Content-Based Filtering dengan Precision@5 sebesar 56% membuktikan bahwa 56% rekomendasi memiliki minimal 1 genre yang sama dengan preferensi pengguna/pembaca
+Contoh: Rekomendasi untuk The Help menghasilkan buku-buku seperti Kerri's War, The Joy Luck Club, Lean In: Women, Work, and the Will to Lead
+- Kesimpulannya model ini berhasil menjawab problem statement 1 dengan memberikan rekomendasi relevan berdasarkan genre
+
+2. Untuk problem statement 2:
+
+  "Platform membutuhkan rekomendasi buku populer untuk meningkatkan engagement"
+
+  Hasil Model yaitu:
+
+- Popularity-Based Recommendation mencapai Bestseller Ratio 100% di Top 10, artinya semua buku yang direkomendasikan adalah bestseller (contoh The Raj Quartet dengan 995 rating)
+- Buku populer cenderung menarik minat pengguna baru dan meningkatkan interaksi di platform
+- Kesimpulannya model ini berhasil menjawab problem statement 2 dengan memberikan buku populer/sedang tren
+
+### Goals yang sudah dicapai
+
+1. Goal 1 yaitu membangun sistem rekomendasi berbasis konten (genre dan deskripsi)
+
+Hasilnya:
+
+- Content-Based Filtering diimplementasikan menggunakan TF-IDF dan cosine similarity
+- Contoh rekomendasi untuk The Help mencakup buku dengan genre Historical Fiction dan Nonfiction yang relevan
+
+2. Goal 2 yaitu menyediakan daftar buku populer berdasarkan rating dan jumlah ulasan
+
+Hasilnya:
+
+- Popularity-Based Recommendation menggunakan skor ```Num_Ratings``` x ```Avg_Rating``` berhasil menampilkan buku dengan interaksi tertinggi (contohnya Hometown Girl After All dengan 999 rating).
+
+### Solution Statement
+
+1. Content-Based Filtering dengan TF-IDF dan cosine similarity
    Merekomendasikan buku berdasarkan kesamaan konten (genre, deskripsi). Evaluasi menunjukkan Precision@5 sebesar 56.00%, efektif untuk merekomendasikan buku dengan konten serupa.
-2. Popularity-Based Recommendation
-   Merekomendasikan buku terpopuler. Evaluasi menunjukkan Bestseller Ratio dalam Top 10 sebesar 100%, berhasil mengidentifikasi buku bestseller.
+   
+2. Popularity-Based Recommendation dengan skor popularitas
+   Merekomendasikan buku terpopuler atau Meningkatkan engagement pengguna baru dengan menampilkan buku populer. Evaluasi menunjukkan Bestseller Ratio dalam Top 10 sebesar 100%, berhasil mengidentifikasi buku bestseller.
    
 Kedua model ini memberikan cara untuk merekomendasikan buku berdasarkan preferensi konten atau popularitas
+
+### Rekomendasi
+
+- Menggabungkan kedua model menjadi sistem hybrid recommendation untuk menyeimbangkan personalisasi dan tren
+- Menambahkan fitur user feedback (rating pengguna) untuk meningkatkan akurasi rekomendasi
 
 **---Terima Kasih---**
