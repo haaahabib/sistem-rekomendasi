@@ -58,8 +58,11 @@ Berikut tahapan dalam data preparation yang dilakukan:
 
 1. Data Cleaning
 - Menghapus baris dengan nilai kosong pada kolom ```Description``` dan ```Genres``` menggunakan ```df.dropna()```
-- Memformat kolom 'Genres' dengan menghapus karakter yang tidak diinginkan
-- 
+- Memformat kolom ```Genres``` dengan menghapus karakter khusus (misal koma (,)) menggunakan regex.
+  ```
+  df_clean = df.dropna(subset=['Description', 'Genres']).copy()  
+  df_clean['Genres'] = df_clean['Genres'].str.replace(r'[\[\]\']', '', regex=True)
+  ```
   
 2. Menggabungkan Fitur Teks
 - Menggabungkan kolom 'Genres' dan 'Description' menjadi satu kolom 'content' untuk digunakan dalam model berbasis konten
