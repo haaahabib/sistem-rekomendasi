@@ -200,7 +200,6 @@ Kedua model ini memberikan cara untuk merekomendasikan buku berdasarkan preferen
 
 ### Rekomendasi
 
-- Menggabungkan kedua model menjadi sistem hybrid recommendation untuk menyeimbangkan personalisasi dan tren
 - Menambahkan fitur user feedback (rating pengguna) untuk meningkatkan akurasi rekomendasi
 
 **---Terima Kasih---**
