@@ -186,7 +186,7 @@ Hasilnya:
 
 Hasilnya:
 
-- Popularity-Based Recommendation menggunakan skor ```Num_Ratings``` x ```Avg_Rating``` berhasil menampilkan buku dengan interaksi tertinggi (contohnya Hometown Girl After All dengan 999 rating).
+- Popularity-Based Recommendation menggunakan skor ```Num_Ratings``` x ```Avg_Rating``` berhasil menampilkan buku dengan interaksi tertinggi (contohnya The Raj Quartet dengan Avg_Rating 4.48 dan Num_Ratings 995.0).
 
 ### Solution Statement
 
